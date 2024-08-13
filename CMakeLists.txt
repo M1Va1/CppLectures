@@ -8,4 +8,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Add subdirectories
 add_subdirectory(template/homework_printer/solution)
 add_subdirectory(template/homework_vec/solution)
+add_subdirectory(template/homework_pair/solution)
 add_subdirectory(template/usage_example)
