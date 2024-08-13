@@ -51,8 +51,7 @@ You need to implement the [`Vectorochek`](vectorochek.cpp#L5 "Go to definition")
    - Increment `size_`.
 
 6. **operator[]**:
-   - Return the element at the given index.
-   - For the const version, return a const reference.
+   - Return the element at the given index. Think about return type of `operator[]`
 
 ### Notes
 
