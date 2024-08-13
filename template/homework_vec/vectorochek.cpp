@@ -42,41 +42,41 @@ public:
 /*
   static constexpr size_t bits_per_byte = 8;
 
-void resize(size_t new_capacity) {
+  void resize(size_t new_capacity) {
     // Allocate new memory for the resized vector
     std::byte *new_data =
         new std::byte[(new_capacity + bits_per_byte - 1) / bits_per_byte];
 
-    // Initialize the new memory with zeros
+    // Initialize the new memory with zeros (bcs y not)
     std::memset(new_data, 0,
                 (new_capacity + bits_per_byte - 1) / bits_per_byte);
 
     // Copy the existing bits to the new memory
-    for (size_t i = 0; i < vec_size; ++i) {
-      if (get_bit(data, i)) {
+    for (size_t i = 0; i < vec_size_; ++i) {
+      if (get_bit(data_, i)) {
         set_bit(new_data, i);
       }
     }
 
     // Deallocate the old memory
-    delete[] data;
+    delete[] data_;
 
-    // Update the data pointer and capacity
-    data = new_data;
-    vec_capacity = new_capacity;
+    // Update the data_ pointer and capacity
+    data_ = new_data;
+    vec_capacity_ = new_capacity;
   }
 
-  bool get_bit(const std::byte *data, size_t index) const {
-    return static_cast<bool>(data[index / bits_per_byte] &
+  bool get_bit(const std::byte *data_, size_t index) const {
+    return static_cast<bool>(data_[index / bits_per_byte] &
                              (std::byte(1) << (index % bits_per_byte)));
   }
 
-  void set_bit(std::byte *data, size_t index) {
-    data[index / bits_per_byte] |= (std::byte(1) << (index % bits_per_byte));
+  void set_bit(std::byte *data_, size_t index) {
+    data_[index / bits_per_byte] |= (std::byte(1) << (index % bits_per_byte));
   }
 
-  void clear_bit(std::byte *data, size_t index) {
-    data[index / bits_per_byte] &= ~(std::byte(1) << (index % bits_per_byte));
+  void clear_bit(std::byte *data_, size_t index) {
+    data_[index / bits_per_byte] &= ~(std::byte(1) << (index % bits_per_byte));
   }
 */
 
