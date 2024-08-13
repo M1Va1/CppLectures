@@ -14,7 +14,7 @@ int main() {
   assert(p.second == "example");
 
   Pair<double, char> p2(3.14, 'P');
-  p2.display(); // Output: First: 3.14, Second: A
+  p2.display(); // Output: First: 3.14, Second: P
 
   return 0;
 }

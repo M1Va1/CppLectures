@@ -11,5 +11,5 @@
 **[Expected Output](pair.cpp#L13 "Go to definition")**:
 ```
 First: 1, Second: example
-First: 3.14, Second: A
+First: 3.14, Second: P
 ```
