@@ -2,7 +2,7 @@
 
 You need to implement both const and non-const iterators for the [`Vectorochek`](../vectorochek.cpp#L5 "Go to definition") class, which you have already implemeted. The iterators should allow traversal of the elements in the vector, and the const iterator should prevent modification of the elements.
 
-Actually, const and non-const iterators implementation are almost the same, the only difference is which `type` they 'contain' (`return` when you direference it, to be formal). If only C++ had a mechanism to help with this. Oh, wait...
+Actually, const and non-const iterators implementation are almost the same, the only difference is which `type` they 'contain' (`return` when you dereference it, to be formal). If only C++ had a mechanism to help with this. Oh, wait...
 
 #### Requirements:
 
