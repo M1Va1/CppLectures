@@ -6,7 +6,7 @@ template <class T1, class T2>
 class Pair
 {
 public:
-    Pair(T1 First, T2 Second) : first(First), second(Second) {};
+    Pair(const T1& First, const T2& Second) : first(First), second(Second) {};
     void display() const
     {
         // First: 1, Second: example
