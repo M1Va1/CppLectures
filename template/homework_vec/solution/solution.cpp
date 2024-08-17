@@ -13,62 +13,67 @@ public:
     // Constructor
     Vectorochek(size_t size = 0)
     {
-        data = new T[std::max(static_cast<size_t>(1), size)];
-        vec_size = size;
-        capacity_ = std::max(static_cast<size_t>(1), size);
+        data_ = nullptr;
+        vec_size_ = 0;
+        vec_capacity_ = 0;
+        resize(std::max(static_cast<size_t>(1), size));
     }
 
     // Destructor
     ~Vectorochek()
     {
-        delete[] data;
+        delete[] data_;
     }
 
     // Return the current size of the vector
     size_t size() const
     {
-        return vec_size;
+        return vec_size_;
     }
 
     // Return the current capacity of the vector
     size_t capacity() const
     {
-        return capacity_;
+        return vec_capacity_;
     }
     // Add an element to the end of the vector
-    void push_back(T new_value)
+    void push_back(const T &new_value)
     {
-        if (vec_size >= capacity_)
-            reallocate(capacity_ * 2);
-        data[vec_size] = new_value;
-        ++vec_size;
+        if (vec_size_ >= vec_capacity_)
+            resize(vec_capacity_ * 2);
+        data_[vec_size_] = new_value;
+        ++vec_size_;
     }
     // Access elements by index
     T &operator[](size_t index)
     {
-        if (index >= vec_size)
+        if (index >= vec_size_)
             throw std::out_of_range("fuck no");
-        return data[index];
+        return data_[index];
     }
-    T operator[](size_t index) const
+    T &operator[](size_t index) const
     {
-        if (index >= vec_size)
+        if (index >= vec_size_)
             throw std::out_of_range("fuck no");
-        return data[index];
+        return data_[index];
     }
 
 private:
-    void reallocate(size_t new_capacity)
+    void resize(size_t new_capacity)
     {
+
         T *buff = new T[new_capacity];
-        std::memmove(buff, data, capacity_ * sizeof(T));
-        capacity_ *= 2;
-        delete[] data;
-        data = buff;
+        size_t target_size = std::min(new_capacity, vec_size_);
+        for (size_t i = 0; i < target_size; ++i)
+            buff[i] = data_[i];
+        vec_capacity_ = new_capacity;
+        if (data_)
+            delete[] data_;
+        data_ = buff;
     }
-    T *data;
-    size_t vec_size;
-    size_t capacity_;
+    T *data_;
+    size_t vec_size_ = 0;
+    size_t vec_capacity_ = 0;
 };
 
 //------------------------------------------------
@@ -101,12 +106,19 @@ public:
             return vec->get_bit(vec->data_, index_of_bool);
         }
 
+        operator bool()
+        {
+            return get_value();
+        }
+
     private:
         size_t index_of_bool;
         Vectorochek *vec;
     };
+
     Vectorochek(size_t size = 0)
     {
+        data_ = nullptr;
         vec_size_ = 0;
         vec_capacity_ = 0;
         resize(std::max(static_cast<size_t>(1), size));
@@ -155,8 +167,8 @@ public:
 
 private:
     std::byte *data_;
-    size_t vec_size_;
-    size_t vec_capacity_;
+    size_t vec_size_ = 0;
+    size_t vec_capacity_ = 0;
     static constexpr size_t bits_per_byte = 8;
 
     void resize(size_t new_capacity)
@@ -179,7 +191,8 @@ private:
         }
 
         // Deallocate the old memory
-        delete[] data_;
+        if (data_)
+            delete[] data_;
 
         // Update the data_ pointer and capacity
         data_ = new_data;

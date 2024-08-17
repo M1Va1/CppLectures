@@ -14,7 +14,7 @@ void PrintArray(const std::array<T, size> &array)
 template <size_t size>
 void PrintArray(const std::array<std::string, size> &array)
 {
-    for (const std::string_view cur_el : array)
+    for (const std::string &cur_el : array)
     {
         std::cout << cur_el;
     }
